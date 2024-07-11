@@ -14,7 +14,14 @@ return {
 		},
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "tsserver", "cssls", "html"},
+				ensure_installed = { 
+          "lua_ls",
+          "tsserver",
+          "cssls", 
+          "html",
+          "tailwindcss",
+          "emmet_ls"
+        },
 			})
 		end,
 	},
@@ -40,7 +47,11 @@ return {
 	    lspconfig["cssls"].setup({
 				capabilities = capabilities,
 			})
-
+        lspconfig["emmet_ls"].setup({
+          capabilities = capabilities,
+          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+        })
+ 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
