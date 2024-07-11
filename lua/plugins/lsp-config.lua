@@ -20,7 +20,7 @@ return {
           "cssls", 
           "html",
           "tailwindcss",
-          "emmet_ls"
+          "emmet_ls",
         },
 			})
 		end,
@@ -47,10 +47,13 @@ return {
 	    lspconfig["cssls"].setup({
 				capabilities = capabilities,
 			})
-        lspconfig["emmet_ls"].setup({
+      lspconfig["tailwindcss"].setup({
+        capabilities = capabilities,
+      })
+      lspconfig["emmet_ls"].setup({
           capabilities = capabilities,
           filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-        })
+      })
  
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
