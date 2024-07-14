@@ -46,7 +46,7 @@ return {
         "<cmd>Telescope grep_string<cr>",
         { desc = "Find string under cursor in cwd" }
       )
-      vim.keymap.set("n", "<leader>fb", "<cmd>Telescope oldfiles<cr>", {})
+      vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", {})
       vim.keymap.set("n", "<leader>fp", "<cmd>Telescope resume<cr>", {})
       vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", {})
       vim.keymap.set("n", "<leader>ft", "<cmd>Telescope treesitter<cr>", {})
