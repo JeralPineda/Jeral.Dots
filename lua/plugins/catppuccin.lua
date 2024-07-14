@@ -5,7 +5,19 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "catppuccin-mocha"
-    end
-  }
+      require("catppuccin").setup({
+        color_overrides = {
+          all = {},
+          latte = {},
+          frappe = {},
+          macchiato = {},
+          mocha = {
+            --base = "#15141f",
+          },
+        },
+      })
+
+      vim.cmd.colorscheme("catppuccin-mocha")
+    end,
+  },
 }
