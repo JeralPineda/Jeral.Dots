@@ -34,7 +34,7 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
-			})
+      })
 			lspconfig.solargraph.setup({
 				capabilities = capabilities,
 			})
