@@ -2,6 +2,8 @@ vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 
 opt.relativenumber = true
 opt.number = true
@@ -38,3 +40,7 @@ opt.splitbelow = true -- split horizzontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+opt.backspace = { "start", "eol", "indent" }
+opt.path:append({ "**" })
+opt.wildignore:append({ "*/node_modules/*" })
