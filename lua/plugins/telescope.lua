@@ -9,10 +9,22 @@ return {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-tree/nvim-web-devicons",
+      "folke/todo-comments.nvim",
     },
     config = function()
       local actions = require("telescope.actions")
       local telescope = require("telescope")
+      local transform_mod = require("telescope.actions.mt").transform_mod
+
+      local trouble = require("trouble")
+      local trouble_telescope = require("trouble.sources.telescope")
+
+      -- or create your custom action
+      local custom_actions = transform_mod({
+        open_trouble_qflist = function(prompt_bufnr)
+          trouble.toggle("quickfix")
+        end,
+      })
 
       require("telescope").setup({
         defaults = {
@@ -21,7 +33,8 @@ return {
             i = {
               ["<C-k>"] = actions.move_selection_previous, -- move to prev result
               ["<C-j>"] = actions.move_selection_next, -- move to next result
-              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<C-q>"] = actions.send_selected_to_qflist + custom_actions.open_trouble_qflist,
+              ["<C-t>"] = trouble_telescope.open,
             },
           },
         },
@@ -46,15 +59,11 @@ return {
         "<cmd>Telescope grep_string<cr>",
         { desc = "Find string under cursor in cwd" }
       )
+      keymap.set("n", "<leader>tc", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
       vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", {})
       vim.keymap.set("n", "<leader>fp", "<cmd>Telescope resume<cr>", {})
       vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", {})
       vim.keymap.set("n", "<leader>ft", "<cmd>Telescope treesitter<cr>", {})
-
-      --local builtin = require("telescope.builtin")
-      --vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-      --vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-      --vim.keymap.set("n", "<leader><leader>", builtin.oldfiles, {})
 
       require("telescope").load_extension("ui-select")
     end,
