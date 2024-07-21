@@ -15,6 +15,8 @@ return {
     local s = ls.s
     local c = ls.c
     local types = require("luasnip.util.types")
+    local d = ls.dynamic_node
+    local sn = ls.snippet_node
 
     ls.config.set_config({
       history = true,
@@ -37,17 +39,6 @@ return {
         return string.upper(string.sub(arg[1][1], 1, 1)) .. string.sub(arg[1][1], 2)
       end, { index })
     end
-
-    -- [
-    --   {
-    --     "key": "ctrl+shift+c",
-    --     "command": "editor.action.insertSnippet",
-    --     "args": {
-    --       "snippet": "console.log('🚀 ${TM_FILENAME} -> #${TM_LINE_NUMBER} -> ${CLIPBOARD} ~', JSON.stringify(${CLIPBOARD}, null, 2));"
-    --     }
-    --   }
-    -- ]
-    -- console.log('🚀 App.jsx -> #9 ->  ~', JSON.stringify(count, null, 2));
 
     ls.add_snippets("react", {
       s("use", fmt("const [{}, set{}] = React.useState({});", { i(1, ""), title_case(1), i(2, "") })),
@@ -77,11 +68,24 @@ return {
         }};
         ]], { i(1, ""), i(2, ""), rep(1), i(3, ""), rep(1), i(4, ""), i(5, "") })),
 
-      s("clg", f(function(args, snip)
-        local res, env = {}, snip.env
-        table.insert(res, "console.log('🚀 " .. env.TM_FILENAME .. " -> #" .. env.TM_LINE_NUMBER .. " ~', JSON.stringify(" .. env.TM_FILENAME .. ", null, 2));")
-        for _, ele in ipairs(env.LS_SELECT_RAW) do table.insert(res, ele) end
-        return res
+      s("clg-rn", 
+         d(1, function(_, parent)
+        return sn(
+          1,
+          fmt("console.log('🚀 " .. parent.snippet.env.TM_FILENAME .. " -> #" .. parent.snippet.env.TM_LINE_NUMBER .. " ~', JSON.stringify({}, null, 2));", {
+            i(1, 'name'),
+          })
+        )
+      end, {})),
+
+      s("clg-r", 
+         d(1, function(_, parent)
+        return sn(
+          1,
+          fmt("console.log('🚀 " .. parent.snippet.env.TM_FILENAME .. " -> #" .. parent.snippet.env.TM_LINE_NUMBER .. " ~', {});", {
+            i(1, 'name'),
+          })
+        )
       end, {})),
     
     }, { key = "react", })
