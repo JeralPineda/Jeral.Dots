@@ -18,6 +18,14 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
+    local function organize_imports()
+      local params = {
+        command = "_typescript.organizeImports",
+        arguments = {vim.api.nvim_buf_get_name(0)},
+      }
+      vim.lsp.buf.execute_command(params)
+    end
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -64,6 +72,9 @@ return {
 
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+        opts.desc = "Organize Imports"
+        keymap.set("n", "<leader>oi", ":OrganizeImports<CR>", opts) -- mapping to restart lsp if necessary
       end,
     })
 
@@ -83,6 +94,17 @@ return {
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
+          init_options = {
+            preferences = {
+              disableSuggestions = true,
+            }
+          },
+          commands = {
+            OrganizeImports = {
+              organize_imports,
+              description = "Organize Imports",
+            }
+          }
         })
       end,
       ["svelte"] = function()
