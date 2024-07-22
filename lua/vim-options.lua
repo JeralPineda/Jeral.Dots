@@ -44,3 +44,13 @@ opt.swapfile = false
 opt.backspace = { "start", "eol", "indent" }
 opt.path:append({ "**" })
 opt.wildignore:append({ "*/node_modules/*" })
+
+
+-- Code Folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "0"
+-- vim.opt.foldtext = "" --number lines
+vim.opt.foldlevel = 99
+-- vim.opt.foldlevelstart = 1 --init on open file
+vim.opt.foldnestmax = 4
