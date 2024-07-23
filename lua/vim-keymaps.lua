@@ -8,7 +8,8 @@ keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
-keymap.set("n", "<leader>sf", ":source % <CR>", {desc = "Save file"})
+keymap.set("n", "<leader>sf", ":source % <CR>", {desc = "Source file"})
+keymap.set("n", "<C-S>", ":update <CR>", {desc = "Save"})
 
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
@@ -35,9 +36,9 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 -- keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 -- Navigate vim panes better
-vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
+keymap.set('n', '<c-k>', ':wincmd k<CR>')
+keymap.set('n', '<c-j>', ':wincmd j<CR>')
+keymap.set('n', '<c-h>', ':wincmd h<CR>')
+keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+keymap.set('n', '<leader>h', ':nohlsearch<CR>')
