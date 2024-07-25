@@ -40,6 +40,10 @@ return {
 
       keymap.set("n", "<leader>ts", "<cmd>TailwindSort<cr>", { desc = "Sorts all classes in the current buffer" })
 
+			 keymap.set("n", "<leader>nc", "<cmd>TailwindNextClass<cr>", { desc = "Moves the cursor to the nearest next class node." })
+
+      keymap.set("n", "<leader>pc", "<cmd>TailwindPrevClass<cr>", { desc = "Moves the cursor to the nearest previous class node." })
+
 		end,
 	}
 }
