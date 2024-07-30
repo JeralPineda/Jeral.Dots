@@ -45,7 +45,8 @@ return {
         "vimdoc",
         "c",
         "query",
-        "regex"
+        "regex",
+        "astro"
       },
       incremental_selection = {
         enable = true,
