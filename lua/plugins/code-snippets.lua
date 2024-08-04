@@ -97,7 +97,25 @@ return {
           if ({}) {{
             {}
           }}
-        ]], { i(1, ""), i(2, "") }))
+        ]], { i(1, ""), i(2, "") })),
+      s("clg-rn", 
+         d(1, function(_, parent)
+        return sn(
+          1,
+          fmt("console.log('🚀 " .. parent.snippet.env.TM_FILENAME .. " -> #" .. parent.snippet.env.TM_LINE_NUMBER .. " ~', JSON.stringify({}, null, 2));", {
+            i(1, 'name'),
+          })
+        )
+      end, {})),
+      s("clg-r", 
+         d(1, function(_, parent)
+        return sn(
+          1,
+          fmt("console.log('🚀 " .. parent.snippet.env.TM_FILENAME .. " -> #" .. parent.snippet.env.TM_LINE_NUMBER .. " ~', {});", {
+            i(1, 'name'),
+          })
+        )
+      end, {})),
     }, {
       key = "javascript",
     })
@@ -128,6 +146,24 @@ return {
           {}
         }};
         ]], { i(1, ""), i(2, "") })),
+        s("clg-rn", 
+         d(1, function(_, parent)
+        return sn(
+          1,
+          fmt("console.log('🚀 " .. parent.snippet.env.TM_FILENAME .. " -> #" .. parent.snippet.env.TM_LINE_NUMBER .. " ~', JSON.stringify({}, null, 2));", {
+            i(1, 'name'),
+          })
+        )
+      end, {})),
+      s("clg-r", 
+         d(1, function(_, parent)
+        return sn(
+          1,
+          fmt("console.log('🚀 " .. parent.snippet.env.TM_FILENAME .. " -> #" .. parent.snippet.env.TM_LINE_NUMBER .. " ~', {});", {
+            i(1, 'name'),
+          })
+        )
+      end, {})),
     }, { key = "typescript", })
 
     ls.add_snippets("lua", {
