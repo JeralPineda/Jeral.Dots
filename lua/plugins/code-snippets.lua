@@ -91,6 +91,31 @@ return {
     }, { key = "react", })
 
     ls.add_snippets("javascript", {
+      s("rfc", fmt([[
+        export const {} = () => {{
+          {}
+          return (
+            <>
+              {}
+            </>
+          );
+        }};
+        ]], { i(1, ""), i(2, ""), i(3, "") })),
+        
+      s("rfcp", fmt([[
+
+        type {}Props = {{
+          {}
+        }};
+
+        export const {} = ({{ {} }}: {}Props) => {{
+          {}
+          return (
+            <>{}</>
+          );
+        }};
+        ]], { i(1, ""), i(2, ""), rep(1), i(3, ""), rep(1), i(4, ""), i(5, "") })),
+
       s("import", fmt([[import {{ {} }} from "{}";]], { i(1, ""), i(2, "") })),
       s("if", fmt(
         [[
@@ -140,6 +165,32 @@ return {
     })
 
     ls.add_snippets("typescript", {
+
+      s("rfc", fmt([[
+        export const {} = () => {{
+          {}
+          return (
+            <>
+              {}
+            </>
+          );
+        }};
+        ]], { i(1, ""), i(2, ""), i(3, "") })),
+        
+      s("rfcp", fmt([[
+
+        type {}Props = {{
+          {}
+        }};
+
+        export const {} = ({{ {} }}: {}Props) => {{
+          {}
+          return (
+            <>{}</>
+          );
+        }};
+        ]], { i(1, ""), i(2, ""), rep(1), i(3, ""), rep(1), i(4, ""), i(5, "") })),
+        
       s("type",
         fmt([[
         type {} = {{
