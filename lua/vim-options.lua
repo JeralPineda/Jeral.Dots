@@ -16,6 +16,12 @@ opt.autoindent = true -- copy indent from current line
 
 opt.wrap = true
 
+-- Activar el corrector ortográfico
+vim.opt.spell = true
+
+-- Establecer el idioma español
+vim.opt.spelllang = { "es", "en" }
+
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assume you want case-sensitive
